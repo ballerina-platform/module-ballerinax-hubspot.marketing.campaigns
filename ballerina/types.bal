@@ -362,6 +362,8 @@ public type NextPage record {
 };
 
 # Provides API key configurations needed when communicating with a remote HTTP endpoint.
+#
+# + private\-app - field description
 public type ApiKeysConfig record {|
     string private\-app;
 |};
