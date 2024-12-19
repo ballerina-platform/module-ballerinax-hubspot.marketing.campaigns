@@ -2,15 +2,15 @@
 distribution = "2201.10.0"
 org = "ballerinax"
 name = "hubspot.marketing.campaigns"
-version = "1.0.0"
+version = "0.1.0"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = []
-# icon = "icon.png" # TODO: update icon.png
+keywords = [] # TODO: Add keywords
+# icon = "icon.png" # TODO: Add icon
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns"
 
 [build-options]
 observabilityIncluded = true
 
-# [platform.java21]
-# graalvmCompatible = true
+[platform.java17]
+graalvmCompatible = true
