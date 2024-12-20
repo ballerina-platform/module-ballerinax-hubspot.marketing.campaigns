@@ -20,7 +20,7 @@
 
 ## Examples
 
-The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.campaigns/examples/), covering the following use cases:
+The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/tree/b1251412885d8b083c0df636bfeb85bebc4aeff3/examples), covering the following use cases:
 
 [//]: # (TODO: Add examples)
 
