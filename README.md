@@ -115,6 +115,58 @@ This command will return the access token necessary for API calls.
 
 ## Quickstart
 
+To use the HubSpot Marketing Forms connector in your Ballerina application, update the .bal file as follows:
+
+### Step 1: Import the module
+
+Import the hubspot.marketing.campaigns module and oauth2 module.
+
+```
+import ballerinax/hubspot.marketing.campaigns as hsmcampaigns;
+import ballerina/oauth2;
+```
+
+### Step 2: Instantiate a new connector
+
+   1. Create a Config.toml file and, configure the obtained credentials in the above steps as follows:
+
+```
+ clientId = <Client Id>
+ clientSecret = <Client Secret>
+ refreshToken = <Refresh Token>
+```
+
+   2. Instantiate a hsmforms:ConnectionConfig with the obtained credentials and initialize the connector with it.
+
+```
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string refreshToken = ?;
+
+final hsmcampaigns:ConnectionConfig hsmcampaignsConfig = {
+    auth : {
+        clientId,
+        clientSecret,
+        refreshToken,
+        credentialBearer: oauth2:POST_BODY_BEARER
+    }
+};
+
+final hsmcampaigns:Client hsmcampaignsClient = check new (hsmcampaignsConfig, "https://api.hubapi.com");
+```
+
+### Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations. A sample usecase is shown below.
+
+Create a Marketing Event
+
+```
+public function main() returns error? {
+    hsmcampaigns:CollectionResponseWithTotalPublicCampaignForwardPaging campaigns = check baseClient->/marketing/v3/campaigns.get();
+}
+```
+
 [//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
 
 ## Examples
