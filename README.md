@@ -115,7 +115,7 @@ This command will return the access token necessary for API calls.
 
 ## Quickstart
 
-To use the HubSpot Marketing Forms connector in your Ballerina application, update the .bal file as follows:
+To use the HubSpot Marketing Campaigns connector in your Ballerina application, update the .bal file as follows:
 
 ### Step 1: Import the module
 
@@ -136,7 +136,7 @@ import ballerina/oauth2;
  refreshToken = <Refresh Token>
 ```
 
-   2. Instantiate a hsmforms:ConnectionConfig with the obtained credentials and initialize the connector with it.
+   2. Instantiate a hsmcampaigns:ConnectionConfig with the obtained credentials and initialize the connector with it.
 
 ```
 configurable string clientId = ?;
