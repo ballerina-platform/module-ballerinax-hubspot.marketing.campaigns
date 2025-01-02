@@ -103,7 +103,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
    4. Run the following curl command. Replace the <YOUR_CLIENT_ID>, <YOUR_REDIRECT_URI> and <YOUR_CLIENT_SECRET> with your specific value. Use the code you received in the above step 3 as the CODE below
 
    - Linux/macOS
-   ```
+   ```bash
    curl --request POST \
 --url https://api.hubapi.com/oauth/v1/token \
 --header 'content-type: application/x-www-form-urlencoded' \
@@ -111,7 +111,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
    ```
      
    - Windows
-   ```
+   ```bash
 curl --request POST ^
 --url https://api.hubapi.com/oauth/v1/token ^
 --header 'content-type: application/x-www-form-urlencoded' ^
@@ -120,7 +120,7 @@ curl --request POST ^
 
 This command will return the access token necessary for API calls.
 
-```
+```json
 {
   "token_type": "bearer",
   "refresh_token": "<Refresh Token>",
@@ -142,7 +142,7 @@ To use the HubSpot Marketing Campaigns connector in your Ballerina application, 
 
 Import the hubspot.marketing.campaigns module and oauth2 module.
 
-```
+```ballerina
 import ballerinax/hubspot.marketing.campaigns as hsmcampaigns;
 import ballerina/oauth2;
 ```
@@ -151,7 +151,7 @@ import ballerina/oauth2;
 
    1. Create a Config.toml file and, configure the obtained credentials in the above steps as follows:
 
-```
+```toml
  clientId = <Client Id>
  clientSecret = <Client Secret>
  refreshToken = <Refresh Token>
@@ -159,7 +159,7 @@ import ballerina/oauth2;
 
    2. Instantiate a hsmcampaigns:ConnectionConfig with the obtained credentials and initialize the connector with it.
 
-```
+```ballerina
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
@@ -182,7 +182,7 @@ Now, utilize the available connector operations. A sample usecase is shown below
 
 Create a Marketing Event
 
-```
+```ballerina
 public function main() returns error? {
     hsmcampaigns:CollectionResponseWithTotalPublicCampaignForwardPaging campaigns = check baseClient->/marketing/v3/campaigns.get();
 }
