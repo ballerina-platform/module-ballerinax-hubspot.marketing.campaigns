@@ -32,33 +32,52 @@ Within app developer accounts, you can create developer test accounts to test ap
 
    1. Go to Test accounts section from the left sidebar.
 
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/testAccount.png)
+
    2. Click on the Create developer test account button on the top right corner.
+
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/developmentTestAccount.png)
 
    3. In the pop-up window, provide a name for the test account and click on the Create button.
 
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/createAccount.png)
+
    4. You will see the newly created test account in the list of test accounts.
+
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/testAccountPortal.png)
 
 ### Step 3: Create a HubSpot App
 
    1. Now navigate to the Apps section from the left sidebar and click on the Create app button on the top right corner.
 
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/appSection.png)
+
    2. Provide a public app name and description for your app.
+
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/namingApp.png)
 
 ### Step 4: Setup Authentication
 
    1. Move to the Auth tab.
+
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/auth.png)
 
    2. In the Scopes section, add the following scopes for your app using the Add new scopes button.
         - marketing.campaigns.read
         - marketing.campaigns.revenue.read
         - marketing.campaigns.write
 
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/marketingScopes.png)
+
    3. In the Redirect URL section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can use localhost for testing purposes. Then hit the Create App button.
 
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/redirectURL.png)
 
 ### Step 5: Get the Client ID and Client Secret
 
 Navigate to the Auth tab and you will see the Client ID and Client Secret for your app. Make sure to save these values.
+
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/clientId_secretId.png)
 
 ### Step 6: Setup Authentication Flow
 
@@ -72,6 +91,8 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
    Replace the <YOUR_CLIENT_ID>, <YOUR_REDIRECT_URI> and <YOUR_SCOPES> with your specific value.
 
    2. Paste it in the browser and select your developer test account to intall the app when prompted.
+
+![](https://github.com/SamudraUduwaka/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/accountSelect.png)
 
    3. A code will be displayed in the browser. Copy the code.
 
