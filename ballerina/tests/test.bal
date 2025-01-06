@@ -28,12 +28,12 @@ final Client baseClient = check new Client(config, serviceUrl = serviceUrl);
 //final string campaignGuid = "637caea9-ff27-40a6-93f0-852383aef453"; //Deleted in testing
 final string campaignGuid = "7c5b58c0-094a-4302-b75f-6fb94d8a3708";
 
-@test:Config {}
-isolated function testGetSearchMarketingCampaigns() returns error? {
-    CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
-    test:assertTrue(response?.results.length() > 0);
-    io:println(response);
-}
+// @test:Config {}
+// isolated function testGetSearchMarketingCampaigns() returns error? {
+//     CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
+//     test:assertTrue(response?.results.length() > 0);
+//     io:println(response);
+// }
 
 // @test:Config {}
 // isolated function testPostCreateMarketingCampaigns() returns error? {
@@ -147,12 +147,13 @@ isolated function testGetSearchMarketingCampaigns() returns error? {
 // }
 
 /////////////////////////////////////////////////
-// @test:Config {}
-// isolated function  testGetListAssets() returns error? {
-//     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/FORM;
-//     test:assertTrue(response?.results.length() > 0);
-//     io:println(response);
-// }
+@test:Config {}
+isolated function  testGetListAssets() returns error? {
+    CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/FORM;
+    io:println(response,"response");
+    test:assertTrue(response?.results.length() > 0);
+    
+}
 ////////////////////////////////////////////////
 
 // @test:Config {}

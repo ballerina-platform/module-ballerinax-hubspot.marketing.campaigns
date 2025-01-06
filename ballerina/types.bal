@@ -289,7 +289,7 @@ public type GetMarketingV3CampaignsCampaignguidAssetsAssettypeQueries record {
 public type PublicCampaignAsset record {
     string name?;
     string id;
-    record {||} metrics;
+    record {||} metrics?;
 };
 
 public type RevenueAttributionAggregate record {

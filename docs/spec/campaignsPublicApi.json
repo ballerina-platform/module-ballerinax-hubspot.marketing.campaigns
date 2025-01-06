@@ -1568,7 +1568,7 @@
         }
       },
       "PublicCampaignAsset" : {
-        "required" : [ "id", "metrics" ],
+        "required" : [ "id"],
         "type" : "object",
         "properties" : {
           "name" : {
