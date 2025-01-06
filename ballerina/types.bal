@@ -227,14 +227,14 @@ public type GetMarketingV3CampaignsCampaignguidQueries record {
     string[] properties?;
 };
 
+public type BatchInputPublicCampaignInput record {
+    PublicCampaignInput[] inputs;
+};
+
 public type CollectionResponseWithTotalPublicCampaignForwardPaging record {
     int:Signed32 total;
     ForwardPaging paging?;
     PublicCampaign[] results;
-};
-
-public type BatchInputPublicCampaignInput record {
-    PublicCampaignInput[] inputs;
 };
 
 public type Paging record {
@@ -362,8 +362,6 @@ public type NextPage record {
 };
 
 # Provides API key configurations needed when communicating with a remote HTTP endpoint.
-#
-# + private\-app - field description
 public type ApiKeysConfig record {|
     string private\-app;
 |};
