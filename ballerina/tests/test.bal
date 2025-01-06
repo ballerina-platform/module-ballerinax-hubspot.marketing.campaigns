@@ -27,6 +27,8 @@ final Client baseClient = check new Client(config, serviceUrl = serviceUrl);
 //Variables
 //final string campaignGuid = "637caea9-ff27-40a6-93f0-852383aef453"; //Deleted in testing
 final string campaignGuid = "7c5b58c0-094a-4302-b75f-6fb94d8a3708";
+final string assetType = "FORM";
+final string assetID = "88047023-7777-40a1-b74b-4b1139e8d45b";
 
 // @test:Config {}
 // isolated function testGetSearchMarketingCampaigns() returns error? {
@@ -147,19 +149,25 @@ final string campaignGuid = "7c5b58c0-094a-4302-b75f-6fb94d8a3708";
 // }
 
 /////////////////////////////////////////////////
-@test:Config {}
-isolated function  testGetListAssets() returns error? {
-    CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/FORM;
-    io:println(response,"response");
-    test:assertTrue(response?.results.length() > 0);
+// @test:Config {}
+// isolated function  testGetListAssets() returns error? {
+//     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/[assetType];
+//     io:println(response,"response");
+//     test:assertTrue(response?.results.length() > 0);
     
-}
+// }
 ////////////////////////////////////////////////
 
 // @test:Config {}
-// isolated function  testPut-/marketing/v3/campaigns/{campaignGuid}/assets/{assetType}/{assetId}() {
+// isolated function  testPutAddAssetAssociation() returns error? {
+//     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
+//     test:assertTrue(response.statusCode == 204);
+//     io:println(response);
 // }
 
-// @test:Config {}
-// isolated function  testDelete-/marketing/v3/campaigns/{campaignGuid}/assets/{assetType}/{assetId}() {
-// }
+@test:Config {}
+isolated function  testDeleteRemoveAssetAssociation() returns error? {
+    var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
+    test:assertTrue(response.statusCode == 204);
+    io:println(response);
+}
