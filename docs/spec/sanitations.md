@@ -12,9 +12,9 @@ The OpenAPI specification is obtained from [Hubspot Marketing Campaings API](htt
 [//]: # (TODO: Add sanitation details)
 1.  Change the url property of the servers object:
 
-    Original: https://api.hubapi.com 
+    Original: `https://api.hubapi.com`
 
-    Updated: https://api.hubapi.com/marketing/v3/campaigns 
+    Updated: `https://api.hubapi.com/marketing/v3/campaigns`
 
     Reason: This change is made to ensure that all API paths are relative to the versioned base URL (/marketing/v3/campaigns), which improves the consistency and usability of the APIs.
 
@@ -24,9 +24,9 @@ The OpenAPI specification is obtained from [Hubspot Marketing Campaings API](htt
 
     Updated: Paths are modified to remove the version prefix from the endpoints, as it is now included in the base URL. For example:
 
-    - Original: /marketing/v3/campaigns/batch/read 
+    - Original: `/marketing/v3/campaigns/batch/read`
 
-    - Updated: /batch/read 
+    - Updated: `/batch/read`
 
     Reason: This modification simplifies the API paths, making them shorter and more readable. It also centralizes the versioning to the base URL, which is a common best practice.
 
