@@ -1,13 +1,13 @@
 _Author_:  Samudra Uduwaka \
 _Created_: 2025-01-02 \
-_Updated_: 2025-01-06 \
+_Updated_: 2025-01-07 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
 
 This document records the sanitation done on top of the official OpenAPI specification from HubSpot Marketing Campaigns . 
-The OpenAPI specification is obtained from (TODO: Add source link).
-These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
+The OpenAPI specification is obtained from [Hubspot Marketing Campaings API](https://developers.hubspot.com/docs/reference/api/marketing/campaigns).
+
 
 [//]: # (TODO: Add sanitation details)
 1.  Change the url property of the servers object:
@@ -29,7 +29,62 @@ These changes are done in order to improve the overall usability, and as workaro
     - Updated: /batch/read 
 
     Reason: This modification simplifies the API paths, making them shorter and more readable. It also centralizes the versioning to the base URL, which is a common best practice.
-3. 
+
+3.  Updated `PublicCampaignAsset` Object:
+
+    Removed `metrics` property from the required properties.
+
+    Definitions: 
+
+    - Previous Definition:
+
+        ```json
+        "PublicCampaignAsset" : {
+            "required" : [ "id", "metrics"],
+            "type" : "object",
+            "properties" : {
+            "name" : {
+                "type" : "string"
+            },
+            "id" : {
+                "type" : "string"
+            },
+            "metrics" : {
+                "type" : "object",
+                "additionalProperties" : {
+                "type" : "number"
+                }
+            }
+            }
+        }
+        ```
+
+    - After
+
+        ```json
+        "PublicCampaignAsset" : {
+            "required" : [ "id"],
+            "type" : "object",
+            "properties" : {
+            "name" : {
+                "type" : "string"
+            },
+            "id" : {
+                "type" : "string"
+            },
+            "metrics" : {
+                "type" : "object",
+                "additionalProperties" : {
+                "type" : "number"
+                }
+            }
+            }
+        }
+        ```
+
+    Reason: `metrics` property is not required when creating and retrieving.
+
+
 
 ## OpenAPI cli command
 
