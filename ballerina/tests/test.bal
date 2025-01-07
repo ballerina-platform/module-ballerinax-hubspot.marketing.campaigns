@@ -4,8 +4,7 @@
 import ballerina/io;
 import ballerina/oauth2;
 import ballerina/test;
-
-//import ballerina/time;
+import ballerina/time;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -25,149 +24,146 @@ ConnectionConfig config = {auth: authConfig};
 final Client baseClient = check new Client(config, serviceUrl = serviceUrl);
 
 //Variables
-//final string campaignGuid = "637caea9-ff27-40a6-93f0-852383aef453"; //Deleted in testing
-final string campaignGuid = "7c5b58c0-094a-4302-b75f-6fb94d8a3708";
+final string campaignGuid = "c4573779-0830-4eb3-bfa3-0916bda9c1a4";
+string campaignGuid2 = "" ;
 final string assetType = "FORM";
 final string assetID = "88047023-7777-40a1-b74b-4b1139e8d45b";
 
-// @test:Config {}
-// isolated function testGetSearchMarketingCampaigns() returns error? {
-//     CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
-//     test:assertTrue(response?.results.length() > 0);
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function testPostCreateMarketingCampaigns() returns error? {
-//     PublicCampaign response = check baseClient->/.post(
-//         payload = {properties: {
-//             "hs_name": "campaign" + time:utcNow().toString() ,
-//             "hs_goal": "string",
-//             "hs_notes": "string"
-//         }}
-//     );
-
-//     test:assertTrue(response?.id != "");
-// }
-
-// @test:Config {}
-// isolated function testGetReadACampaign() returns error? {
-//     PublicCampaignWithAssets response = check baseClient->/[campaignGuid];
-//     test:assertTrue(response?.id == campaignGuid);
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function testPatchUpdateCampaigns() returns error? {
-//     PublicCampaign response = check baseClient->/[campaignGuid].patch(
-//         payload = {properties: {
-//             "hs_goal": "updated",
-//             "hs_notes": "string"
-//         }}
-//     );
-
-//     test:assertTrue(response?.id == campaignGuid);
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function  testDeleteCampaign() returns error? {
-//     var response = check baseClient->/[campaignGuid].delete();
-//     test:assertTrue(response.statusCode == 204);
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function testPostBatchCreate() returns error? {
-//     BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/create.post(
-//         payload = {
-//                 "inputs": [
-//                     {
-//                         "properties": {
-//                             "hs_name": "batch3",
-//                             "hs_goal": "stringval"
-//                         }
-//                     },
-//                     {
-//                         "properties": {
-//                             "hs_name": "batch4",
-//                             "hs_goal": "stringval"
-//                         }
-//                     }
-//                 ]
-//             }
-//     );
-//     test:assertTrue(response?.status == "COMPLETE");
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function  testPostBatchRead() returns error? {
-//     BatchResponsePublicCampaignWithAssets|BatchResponsePublicCampaignWithAssetsWithErrors response = check baseClient->/batch/read.post(
-//         payload = {
-//                 "inputs": [
-//                     {
-//                         "id": campaignGuid
-//                     }
-//                 ]
-//             }
-//     );
-//     test:assertTrue(response?.status == "COMPLETE");
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function testPostDeleteABatchOfCampaigns() returns error? {
-//     var response = check baseClient->/batch/archive.post(
-//         payload = {
-//             "inputs": [
-//                 {
-//                     "id": "99765286-2c49-443f-b2be-e80b06cf4798"
-//                 },
-//                 {
-//                     "id": "73861515-0252-4c78-aeac-c93d6df06c97"
-//                 }
-//             ]
-//         }
-//     );
-//     test:assertTrue(response.statusCode == 204);
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function testGetReportsRevenue() returns error? {
-//     RevenueAttributionAggregate response = check baseClient->/[campaignGuid]/reports/revenue;
-//     test:assertTrue(response?.revenueAmount is decimal);
-//     io:println(response);
-// }
-
-// @test:Config {}
-// isolated function testGetReportsMetrics() returns error? {
-//     MetricsCounters response = check baseClient->/[campaignGuid]/reports/metrics;
-//     test:assertTrue(response?.sessions == 0);
-//     io:println(response);
-// }
-
-/////////////////////////////////////////////////
-// @test:Config {}
-// isolated function  testGetListAssets() returns error? {
-//     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/[assetType];
-//     io:println(response,"response");
-//     test:assertTrue(response?.results.length() > 0);
-    
-// }
-////////////////////////////////////////////////
-
-// @test:Config {}
-// isolated function  testPutAddAssetAssociation() returns error? {
-//     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
-//     test:assertTrue(response.statusCode == 204);
-//     io:println(response);
-// }
+@test:Config {}
+isolated function testGetSearchMarketingCampaigns() returns error? {
+    CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
+    test:assertTrue(response?.results.length() > 0);
+    io:println(response);
+}
 
 @test:Config {}
+function testPostCreateMarketingCampaigns() returns error? {
+    PublicCampaign response = check baseClient->/.post(
+        payload = {properties: {
+            "hs_name": "campaign" + time:utcNow().toString() ,
+            "hs_goal": "string",
+            "hs_notes": "string"
+        }}
+    );
+
+    test:assertTrue(response?.id != "");
+    campaignGuid2 = response?.id;
+
+    //io:println(response?.id);
+}
+
+@test:Config {}
+isolated function testGetReadACampaign() returns error? {
+    PublicCampaignWithAssets response = check baseClient->/[campaignGuid];
+    test:assertTrue(response?.id == campaignGuid);
+    io:println(response);
+}
+
+@test:Config {}
+isolated function testPatchUpdateCampaigns() returns error? {
+    PublicCampaign response = check baseClient->/[campaignGuid].patch(
+        payload = {properties: {
+            "hs_goal": "updated2",
+            "hs_notes": "string"
+        }}
+    );
+
+    test:assertTrue(response?.id == campaignGuid);
+    io:println(response);
+}
+
+@test:Config {}
+isolated function testPostBatchCreate() returns error? {
+    BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/create.post(
+        payload = {
+                "inputs": [
+                    {
+                        "properties": {
+                            "hs_name": "batchCampaign" + time:utcToString(time:utcNow()),
+                            "hs_goal": "stringval"
+                        }
+                    }
+                ]
+            }
+    );
+    test:assertTrue(response?.status == "COMPLETE");
+    io:println(response);
+}
+
+@test:Config {}
+isolated function  testPostBatchRead() returns error? {
+    BatchResponsePublicCampaignWithAssets|BatchResponsePublicCampaignWithAssetsWithErrors response = check baseClient->/batch/read.post(
+        payload = {
+                "inputs": [
+                    {
+                        "id": "ef46bced-1a75-42b5-9f5f-ebdd39cbfd3b"
+                    }
+                ]
+            }
+    );
+    test:assertTrue(response?.status == "COMPLETE");
+    io:println(response);
+}
+
+@test:Config {}
+isolated function testGetReportsRevenue() returns error? {
+    RevenueAttributionAggregate response = check baseClient->/[campaignGuid]/reports/revenue;
+    test:assertTrue(response?.revenueAmount is decimal);
+    io:println(response);
+}
+
+@test:Config {}
+isolated function testGetReportsMetrics() returns error? {
+    MetricsCounters response = check baseClient->/[campaignGuid]/reports/metrics;
+    test:assertTrue(response?.sessions == 0);
+    io:println(response);
+}
+
+@test:Config {}
+isolated function  testGetListAssets() returns error? {
+    CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/[assetType];
+    io:println(response,"response");
+    test:assertTrue(response?.results.length() > 0);
+    
+}
+
+@test:Config {}
+isolated function  testPutAddAssetAssociation() returns error? {
+    var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
+    test:assertTrue(response.statusCode == 204);
+    io:println(response);
+}
+
+@test:Config {
+    dependsOn: [testPutAddAssetAssociation, testGetListAssets]
+}
 isolated function  testDeleteRemoveAssetAssociation() returns error? {
     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
+    test:assertTrue(response.statusCode == 204);
+    io:println(response);
+}
+
+@test:Config {dependsOn: [testPostCreateMarketingCampaigns]}
+function  testDeleteCampaign() returns error? {
+    var response = check baseClient->/[campaignGuid2].delete();
+    test:assertTrue(response.statusCode == 204);
+    io:println(response);
+}
+
+@test:Config {}
+isolated function testPostDeleteABatchOfCampaigns() returns error? {
+    var response = check baseClient->/batch/archive.post(
+        payload = {
+            "inputs": [
+                {
+                    "id": "b3e493b0-9d5a-4b3e-a362-f4e0f015345d"
+                },
+                {
+                    "id": "96a87dab-554a-474c-853b-c78193a8b889"
+                }
+            ]
+        }
+    );
     test:assertTrue(response.statusCode == 204);
     io:println(response);
 }
