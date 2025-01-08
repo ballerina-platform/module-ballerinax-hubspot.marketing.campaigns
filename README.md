@@ -14,7 +14,7 @@ The ballerinax/module-ballerinax-hubspot.marketing.campaigns offers APIs to conn
 
 ## Setup guide
 
-To use the HubSpot Feedback connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
+To use the HubSpot Marketing Campaigns connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
 
 ### Step 1: Create/Login to a HubSpot Developer Account
 
