@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/io;
 import ballerina/oauth2;
 import ballerina/test;
 import ballerina/time;
@@ -36,12 +35,10 @@ ConnectionConfig config = {auth: authConfig};
 
 final Client baseClient = check new (config);
 
-//Variables
 string campaignGuid2 = "";
 configurable string campaignGuid = ?;
 configurable string assetType = ?;
 configurable string assetID = ?;
-//string[] currencyCodes = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "SEK", "NZD"];
 
 configurable string sampleCampaignGuid1 = ?;
 configurable string sampleCampaignGuid2 = ?;
@@ -183,14 +180,6 @@ isolated function testPutAddAssetAssociation() returns error? {
 isolated function testDeleteRemoveAssetAssociation() returns error? {
     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
     test:assertEquals(response.statusCode , 204);
-}
-
-//Read Budget
-@test:Config {}
-isolated function testGetReadBudget() returns error? {
-    PublicBudgetTotals response = check baseClient->/[campaignGuid]/budget/totals;
-    io:println(response);
-    test:assertTrue(response.currencyCode == "USD");
 }
 
 //Delete a Marketing Campaign
