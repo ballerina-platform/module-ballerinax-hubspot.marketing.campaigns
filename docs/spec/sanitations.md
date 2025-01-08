@@ -9,7 +9,6 @@ This document records the sanitation done on top of the official OpenAPI specifi
 The OpenAPI specification is obtained from [Hubspot Marketing Campaings API](https://developers.hubspot.com/docs/reference/api/marketing/campaigns).
 
 
-[//]: # (TODO: Add sanitation details)
 1.  Change the url property of the servers object:
 
     Original: `https://api.hubapi.com`
@@ -83,7 +82,6 @@ The OpenAPI specification is obtained from [Hubspot Marketing Campaings API](htt
         ```
 
     Reason: `metrics` property is not required when creating and retrieving.
-
 
 
 ## OpenAPI cli command
