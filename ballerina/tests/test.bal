@@ -34,7 +34,7 @@ OAuth2RefreshTokenGrantConfig authConfig = {
 
 ConnectionConfig config = {auth: authConfig};
 
-final Client baseClient = check new Client(config);
+final Client baseClient = check new (config);
 
 //Variables
 string campaignGuid2 = "";
