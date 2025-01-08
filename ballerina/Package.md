@@ -2,7 +2,7 @@
 
 [HubSpot](https://www.hubspot.com/our-story) is an AI-powered customer relationship management (CRM) platform. 
 
-The ballerinax/module-ballerinax-hubspot.marketing.campaigns offers APIs to connect and interact with the [Hubspot Marketing Campaings API](https://github.com/HubSpot/HubSpot-public-api-spec-collection/blob/main/PublicApiSpecs/Marketing/Campaigns%20Public%20Api/Rollouts/177944/v3/campaignsPublicApi.json) endpoints, specifically based on the [Hubspot Marketing Campaings API Documentation](https://developers.hubspot.com/docs/reference/api/marketing/campaigns)
+The `ballerinax/module-ballerinax-hubspot.marketing.campaigns` connector offers APIs to connect and interact with the [Hubspot Marketing Campaigns API](https://developers.hubspot.com/docs/guides/api/marketing/campaigns) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)
 
 ## Setup guide
 
@@ -172,7 +172,7 @@ public function main() returns error? {
 }
 ```
 
+
 ## Examples
 
-The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.campaigns/tree/main/examples/), covering the following use cases:
-
+The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/tree/main/examples), covering the following use cases:
