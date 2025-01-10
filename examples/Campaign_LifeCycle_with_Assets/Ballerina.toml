@@ -1,0 +1,8 @@
+[package]
+org = "samudrau"
+name = "Campaign_LifeCycle_with_Assets"
+version = "0.1.0"
+distribution = "2201.10.3"
+
+[build-options]
+observabilityIncluded = true
