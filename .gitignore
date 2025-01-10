@@ -56,3 +56,5 @@ build
 
 # Ignore Docker env file
 docker.env
+ballerina/tests/mock_service.bal
+ballerina/tests/mock_test.bal
