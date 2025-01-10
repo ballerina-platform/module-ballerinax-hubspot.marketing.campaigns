@@ -14,6 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
 import ballerina/time;
@@ -23,41 +24,36 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-configurable string serviceUrl = "https://api.hubapi.com/marketing/v3/campaigns";
-
-campaigns:OAuth2RefreshTokenGrantConfig authConfig = {
+campaigns:OAuth2RefreshTokenGrantConfig auth = {
     clientId,
     clientSecret,
     refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-campaigns:ConnectionConfig config = {auth: authConfig};
+final campaigns:Client hubspotMarketingCampaign = check new ({auth});
 
-final campaigns:Client baseClient = check new (config);
+public function main() returns error? {
 
-
-public function main() returns error?{
-
-     campaigns:BatchInputPublicCampaignInput inputBatchCampaignsDefinition = {
-            "inputs": [
-                {
-                    "properties": {
-                        "hs_name": "batchCampaign1_" + time:utcToString(time:utcNow()),
-                        "hs_goal": "goalForBatchCampaign1"
-                    }
-                },
-                {
-                    "properties": {
-                        "hs_name": "batchCampaign2_" + time:utcToString(time:utcNow()),
-                        "hs_goal": "goalForBatchCampaign2"
-                    }
+    campaigns:BatchInputPublicCampaignInput inputBatchCampaignsDefinition = {
+        "inputs": [
+            {
+                "properties": {
+                    "hs_name": "batchCampaign1_" + time:utcToString(time:utcNow()),
+                    "hs_goal": "goalForBatchCampaign1"
                 }
-            ]
-        };
+            },
+            {
+                "properties": {
+                    "hs_name": "batchCampaign2_" + time:utcToString(time:utcNow()),
+                    "hs_goal": "goalForBatchCampaign2"
+                }
+            }
+        ]
+    };
 
-    campaigns:BatchResponsePublicCampaign response = check baseClient->/batch/create.post(
-        inputBatchCampaignsDefinition     
+    campaigns:BatchResponsePublicCampaign response = check hubspotMarketingCampaign->/batch/create.post(
+        inputBatchCampaignsDefinition
     );
     string campaignId1 = response?.results[0]?.id;
     string campaignId2 = response?.results[1]?.id;
@@ -68,11 +64,12 @@ public function main() returns error?{
         io:println("Batch creation is successful");
     }
 
-    campaigns:BatchResponsePublicCampaignWithAssets|campaigns:BatchResponsePublicCampaignWithAssetsWithErrors batchReadResponse = check baseClient->/batch/read.post(
+    campaigns:BatchResponsePublicCampaignWithAssets|campaigns:BatchResponsePublicCampaignWithAssetsWithErrors
+        batchReadResponse = check hubspotMarketingCampaign->/batch/read.post(
         payload = {
             "inputs": [
-                { "id": campaignId1 },
-                { "id": campaignId2 }
+                {"id": campaignId1},
+                {"id": campaignId2}
             ]
         }
     );
@@ -83,7 +80,7 @@ public function main() returns error?{
         io:println("Batch read is not successful");
     }
 
-    var batchDeleteResponse = check baseClient->/batch/archive.post(
+    http:Response batchDeleteResponse = check hubspotMarketingCampaign->/batch/archive.post(
         payload = {
             "inputs": [
                 {
@@ -96,12 +93,11 @@ public function main() returns error?{
         }
     );
 
-    var deleteResponse = batchDeleteResponse.statusCode;
+    int deleteResponse = batchDeleteResponse.statusCode;
 
     if deleteResponse == 204 {
         io:println("Batch deletion is successful");
     } else {
         io:println("Batch deletion is not successful");
     }
-  
 };

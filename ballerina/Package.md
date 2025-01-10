@@ -1,6 +1,6 @@
 ## Overview
 
-[HubSpot](https://www.hubspot.com/our-story) is an AI-powered customer relationship management (CRM) platform. 
+[HubSpot](https://www.hubspot.com) is an AI-powered customer relationship management (CRM) platform.
 
 The `ballerinax/module-ballerinax-hubspot.marketing.campaigns` connector offers APIs to connect and interact with the [Hubspot Marketing Campaigns API](https://developers.hubspot.com/docs/guides/api/marketing/campaigns) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)
 
@@ -14,60 +14,60 @@ If you have an account already, go to the [HubSpot developer portal](https://dev
 
 If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
-### Step 2 (Optional): Create a [Developer Test Account](https://developers.hubspot.com/docs/getting-started/account-types#developer-test-accounts) under your account
+### Step 2 (Optional): Create a Developer Test Account
 
-Within app developer accounts, you can create developer test accounts to test apps and integrations without affecting any real HubSpot data.
+Within app developer accounts, you can create a [developer test account](https://developers.hubspot.com/docs/getting-started/account-types#developer-test-accounts) under your account to test apps and integrations without affecting any real HubSpot data.
 
 > **Note**: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
 
    1. Go to Test accounts section from the left sidebar.
 
-![Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/testAccount.png)
+![Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/testAccount.png)
 
    2. Click on the Create developer test account button on the top right corner.
 
-![Development Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/developmentTestAccount.png)
+![Development Test Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/developmentTestAccount.png)
 
    3. In the pop-up window, provide a name for the test account and click on the Create button.
 
-![Create Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/createAccount.png)
+![Create Account](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/createAccount.png)
 
    4. You will see the newly created test account in the list of test accounts.
 
-![Test Account Portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/testAccountPortal.png)
+![Test Account Portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/testAccountPortal.png)
 
 ### Step 3: Create a HubSpot App
 
    1. Navigate to the Apps section from the left sidebar and click on the Create app button on the top right corner.
 
-![App Section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/appSection.png)
+![App Section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/appSection.png)
 
    2. Provide a public app name and description for your app.
 
-![Naming the App](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/namingApp.png)
+![Naming the App](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/namingApp.png)
 
 ### Step 4: Setup Authentication
 
    1. Move to the Auth tab.
 
-![Auth Section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/auth.png)
+![Auth Section](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/auth.png)
 
    2. In the Scopes section, add the following scopes for your app using the Add new scopes button.
         - `marketing.campaigns.read`
         - `marketing.campaigns.revenue.read`
         - `marketing.campaigns.write`
 
-![Marketing Scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/marketingScopes.png)
+![Marketing Scopes](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/marketingScopes.png)
 
    3. In the Redirect URL section, add the redirect URL for your app. This is the URL where the user will be redirected after the authentication process. You can use `localhost` for testing purposes. Then click the "Create App" button.
 
-![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/redirectURL.png)
+![Redirect URL](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/redirectURL.png)
 
 ### Step 5: Get the Client ID and Client Secret
 
 Navigate to the Auth tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
 
-![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/Resources/clientId_secretId.png)
+![Client ID and Client Secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/clientId_secretId.png)
 
 ### Step 6: Setup Authentication Flow
 
@@ -82,7 +82,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
    2. Paste it in the browser and select your developer test account to intall the app when prompted.
 
-![Account Select](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/blob/fb6603714f9b563b74775579577749ad62726576/docs/Resources/accountSelect.png)
+![Account Select](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/main/docs/resources/accountSelect.png)
 
    3. A code will be displayed in the browser. Copy the code.
 
@@ -95,7 +95,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 --header 'content-type: application/x-www-form-urlencoded' \
 --data 'grant_type=authorization_code&code=<CODE>&redirect_uri=<YOUR_REDIRECT_URI>&client_id=<YOUR_CLIENT_ID>&client_secret=<YOUR_CLIENT_SECRET>'
    ```
-     
+
    - Windows
    ```bash
 curl --request POST ^
@@ -175,4 +175,7 @@ public function main() returns error? {
 
 ## Examples
 
-The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/tree/main/examples), covering the following use cases:
+The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios.
+Explore these
+[examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/tree/main/examples),
+covering the following use cases:
