@@ -1,14 +1,8 @@
 [package]
 org = "wso2"
-name = "Batch_of_Campaigns"
+name = "batch_of_campaigns"
 version = "0.1.0"
 distribution = "2201.10.3"
 
 [build-options]
 observabilityIncluded = true
-
-[[dependency]]
-org = "ballerinax"
-name = "hubspot.marketing.campaigns"
-version = "1.0.0"
-repository="local"

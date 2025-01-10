@@ -22,16 +22,14 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-configurable string serviceUrl = "https://api.hubapi.com/marketing/v3/campaigns";
-
-OAuth2RefreshTokenGrantConfig authConfig = {
+OAuth2RefreshTokenGrantConfig auth = {
     clientId,
     clientSecret,
     refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-ConnectionConfig config = {auth: authConfig};
+ConnectionConfig config = {auth};
 
 final Client baseClient = check new (config);
 
@@ -45,15 +43,12 @@ configurable string sampleCampaignGuid2 = ?;
 configurable string sampleCampaignGuid3 = ?;
 configurable string sampleCampaignGuid4 = ?;
 
-
-//SearchMarketingCampaigns
 @test:Config {}
 isolated function testGetSearchMarketingCampaigns() returns error? {
     CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
-//CreateMarketingCampaigns
 @test:Config {}
 function testPostCreateMarketingCampaigns() returns error? {
     PublicCampaign response = check baseClient->/.post(
@@ -65,18 +60,16 @@ function testPostCreateMarketingCampaigns() returns error? {
             }
         }
     );
-    test:assertNotEquals(response?.id , "");
+    test:assertNotEquals(response?.id, "");
     campaignGuid2 = response?.id;
 }
 
-//Read a Marketing Campaign
 @test:Config {}
 isolated function testGetReadACampaign() returns error? {
     PublicCampaignWithAssets response = check baseClient->/[campaignGuid];
-    test:assertEquals(response?.id , campaignGuid);
+    test:assertEquals(response?.id, campaignGuid);
 }
 
-//Update a Marketing Campaign
 @test:Config {}
 isolated function testPatchUpdateCampaigns() returns error? {
     PublicCampaign response = check baseClient->/[campaignGuid].patch(
@@ -87,10 +80,9 @@ isolated function testPatchUpdateCampaigns() returns error? {
             }
         }
     );
-    test:assertEquals(response?.id , campaignGuid);
+    test:assertEquals(response?.id, campaignGuid);
 }
 
-//Create a Batch of Marketing Campaigns
 @test:Config {}
 isolated function testPostBatchCreate() returns error? {
     BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/create.post(
@@ -105,10 +97,9 @@ isolated function testPostBatchCreate() returns error? {
             ]
         }
     );
-    test:assertEquals(response?.status , "COMPLETE");
+    test:assertEquals(response?.status, "COMPLETE");
 }
 
-//Update a Batch of Marketing Campaigns
 @test:Config {}
 isolated function testPostBatchUpdate() returns error? {
     BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/update.post(
@@ -124,13 +115,13 @@ isolated function testPostBatchUpdate() returns error? {
             ]
         }
     );
-    test:assertEquals(response?.status , "COMPLETE");
+    test:assertEquals(response?.status, "COMPLETE");
 }
 
-//Read a Batch of Marketing Campaigns
 @test:Config {}
 isolated function testPostBatchRead() returns error? {
-    BatchResponsePublicCampaignWithAssets|BatchResponsePublicCampaignWithAssetsWithErrors response = check baseClient->/batch/read.post(
+    BatchResponsePublicCampaignWithAssets|BatchResponsePublicCampaignWithAssetsWithErrors response =
+        check baseClient->/batch/read.post(
         payload = {
             "inputs": [
                 {
@@ -139,24 +130,21 @@ isolated function testPostBatchRead() returns error? {
             ]
         }
     );
-    test:assertEquals(response?.status , "COMPLETE");
+    test:assertEquals(response?.status, "COMPLETE");
 }
 
-//Get Reports - Revenue
 @test:Config {}
 isolated function testGetReportsRevenue() returns error? {
     RevenueAttributionAggregate response = check baseClient->/[campaignGuid]/reports/revenue;
     test:assertTrue(response?.revenueAmount is decimal);
 }
 
-//Reports Metrics
 @test:Config {}
 isolated function testGetReportsMetrics() returns error? {
     MetricsCounters response = check baseClient->/[campaignGuid]/reports/metrics;
     test:assertTrue(response?.sessions >= 0);
 }
 
-//List Assets Associated with a Campaign
 @test:Config {}
 isolated function testGetListAssets() returns error? {
     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/[assetType];
@@ -164,34 +152,30 @@ isolated function testGetListAssets() returns error? {
 
 }
 
-//Add an Asset Association to a Campaign
 @test:Config {
     dependsOn: [testDeleteRemoveAssetAssociation]
 }
 isolated function testPutAddAssetAssociation() returns error? {
     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
-    test:assertEquals(response.statusCode , 204);
+    test:assertEquals(response.statusCode, 204);
 }
 
-//Remove an Asset Association from a Campaign
 @test:Config {
     dependsOn: [testGetListAssets]
 }
 isolated function testDeleteRemoveAssetAssociation() returns error? {
     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
-    test:assertEquals(response.statusCode , 204);
+    test:assertEquals(response.statusCode, 204);
 }
 
-//Delete a Marketing Campaign
 @test:Config {
     dependsOn: [testPostCreateMarketingCampaigns]
 }
 function testDeleteCampaign() returns error? {
     var response = check baseClient->/[campaignGuid2].delete();
-    test:assertEquals(response.statusCode , 204);
+    test:assertEquals(response.statusCode, 204);
 }
 
-//Delete a Batch of Marketing Campaigns
 @test:Config {}
 isolated function testPostDeleteABatchOfCampaigns() returns error? {
     var response = check baseClient->/batch/archive.post(
@@ -206,5 +190,5 @@ isolated function testPostDeleteABatchOfCampaigns() returns error? {
             ]
         }
     );
-    test:assertEquals(response.statusCode , 204);
+    test:assertEquals(response.statusCode, 204);
 }

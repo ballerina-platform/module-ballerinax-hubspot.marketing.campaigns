@@ -18,39 +18,36 @@ import ballerina/io;
 import ballerina/oauth2;
 import ballerina/time;
 import ballerinax/hubspot.marketing.campaigns;
+import ballerina/http;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-configurable string serviceUrl = "https://api.hubapi.com/marketing/v3/campaigns";
-
-campaigns:OAuth2RefreshTokenGrantConfig authConfig = {
+campaigns:OAuth2RefreshTokenGrantConfig auth = {
     clientId,
     clientSecret,
     refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-campaigns:ConnectionConfig config = {auth: authConfig};
-
-final campaigns:Client baseClient = check new (config);
+final campaigns:Client hubspotMarketingCampaigns = check new ({auth});
 
 configurable string assetType = ?;
 configurable string assetID = ?;
 
-public function main() returns error?{
+public function main() returns error? {
 
-     campaigns:PublicCampaignInput inputCampaignDefinition = {
-            properties: {
-                "hs_name": "campaign" + time:utcNow().toString(),
-                "hs_goal": "campaignGoalSpecified",
-                "hs_notes": "someNotesForTheCampaign"
-            }
-        };
+    campaigns:PublicCampaignInput inputCampaignDefinition = {
+        properties: {
+            "hs_name": "campaign" + time:utcNow().toString(),
+            "hs_goal": "campaignGoalSpecified",
+            "hs_notes": "someNotesForTheCampaign"
+        }
+    };
 
-    campaigns:PublicCampaign response = check baseClient->/.post(
-        inputCampaignDefinition     
+    campaigns:PublicCampaign response = check hubspotMarketingCampaigns->/.post(
+        inputCampaignDefinition
     );
 
     string campaignId = response?.id;
@@ -58,20 +55,20 @@ public function main() returns error?{
     if campaignId == "" {
         io:println("Campaign creation is not successful");
     } else {
-        io:println("Campaign creation is successful");
-        io:println("Campaign ID: " + campaignId);
+        io:println(string `Campaign with id "${campaignId}" created successfully`);
     }
 
-    var addAssetResponse = check baseClient->/[campaignId]/assets/[assetType]/[assetID].put();
-    
+    var addAssetResponse = check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType]/[assetID].put();
+
     if addAssetResponse.statusCode == 204 {
         io:println("Asset association is successful");
     } else {
         io:println("Asset association is not successful");
     }
 
-    campaigns:CollectionResponsePublicCampaignAssetForwardPaging assetListResponse = check baseClient->/[campaignId]/assets/[assetType];
-    
+    campaigns:CollectionResponsePublicCampaignAssetForwardPaging assetListResponse =
+        check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType];
+
     if assetListResponse.results.length() > 0 {
         io:println("Asset list retrieval is successful");
         io:println("Asset ID: " + assetListResponse.results[0].id);
@@ -79,20 +76,20 @@ public function main() returns error?{
         io:println("Asset list retrieval is not successful");
     }
 
-    var assetRemoveResponse = check baseClient->/[campaignId]/assets/[assetType]/[assetID].delete();
-    
+    http:Response assetRemoveResponse = check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType]/[assetID].delete();
+
     if assetRemoveResponse.statusCode == 204 {
         io:println("Asset removal is successful");
     } else {
         io:println("Asset removal is not successful");
     }
 
-    var deleteCampaignResponse = check baseClient->/[campaignId].delete();
+    http:Response deleteCampaignResponse = check hubspotMarketingCampaigns->/[campaignId].delete();
 
     if deleteCampaignResponse.statusCode == 204 {
         io:println("Batch deletion is successful");
     } else {
         io:println("Batch deletion is not successful");
     }
-  
+
 };
