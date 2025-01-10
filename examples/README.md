@@ -2,9 +2,8 @@
 
 The `ballerinax/hubspot.marketing.campaigns` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. [Batch of Campaigns](./batch_of_campaigns/) - 
+2. [Campaign Lifecycle with Assets](./campaign_lifecycle_with_assets/) -
 
 ## Prerequisites
 
