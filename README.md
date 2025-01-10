@@ -90,7 +90,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
    2. Paste it in the browser and select your developer test account to intall the app when prompted.
 
-![Account Select](docs/resources/accountSelect.png)
+   ![Account Select](docs/resources/accountSelect.png)
 
    3. A code will be displayed in the browser. Copy the code.
 
@@ -185,6 +185,8 @@ public function main() returns error? {
 
 The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/tree/main/examples), covering the following use cases:
 
+1. [Batch_of_Campaigns](examples/Batch_of_Campaigns)
+2. [Campaign_LifeCycle_with_Assets](examples/Campaign_LifeCycle_with_Assets)
 
 ## Build from the source
 
