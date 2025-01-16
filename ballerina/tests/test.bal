@@ -43,13 +43,17 @@ configurable string sampleCampaignGuid2 = ?;
 configurable string sampleCampaignGuid3 = ?;
 configurable string sampleCampaignGuid4 = ?;
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testGetSearchMarketingCampaigns() returns error? {
     CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 function testPostCreateMarketingCampaigns() returns error? {
     PublicCampaign response = check baseClient->/.post(
         payload = {
@@ -64,13 +68,17 @@ function testPostCreateMarketingCampaigns() returns error? {
     campaignGuid2 = response?.id;
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testGetReadACampaign() returns error? {
     PublicCampaignWithAssets response = check baseClient->/[campaignGuid];
     test:assertEquals(response?.id, campaignGuid);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testPatchUpdateCampaigns() returns error? {
     PublicCampaign response = check baseClient->/[campaignGuid].patch(
         payload = {
@@ -83,7 +91,9 @@ isolated function testPatchUpdateCampaigns() returns error? {
     test:assertEquals(response?.id, campaignGuid);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testPostBatchCreate() returns error? {
     BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/create.post(
         payload = {
@@ -100,7 +110,9 @@ isolated function testPostBatchCreate() returns error? {
     test:assertEquals(response?.status, "COMPLETE");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testPostBatchUpdate() returns error? {
     BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/update.post(
         payload = {
@@ -118,7 +130,9 @@ isolated function testPostBatchUpdate() returns error? {
     test:assertEquals(response?.status, "COMPLETE");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testPostBatchRead() returns error? {
     BatchResponsePublicCampaignWithAssets|BatchResponsePublicCampaignWithAssetsWithErrors response =
         check baseClient->/batch/read.post(
@@ -133,19 +147,25 @@ isolated function testPostBatchRead() returns error? {
     test:assertEquals(response?.status, "COMPLETE");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testGetReportsRevenue() returns error? {
     RevenueAttributionAggregate response = check baseClient->/[campaignGuid]/reports/revenue;
     test:assertTrue(response?.revenueAmount is decimal);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testGetReportsMetrics() returns error? {
     MetricsCounters response = check baseClient->/[campaignGuid]/reports/metrics;
     test:assertTrue(response?.sessions >= 0);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testGetListAssets() returns error? {
     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/[assetType];
     test:assertTrue(response?.results.length() > 0);
@@ -153,7 +173,8 @@ isolated function testGetListAssets() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testDeleteRemoveAssetAssociation]
+    dependsOn: [testDeleteRemoveAssetAssociation],
+    groups: ["live_tests"]
 }
 isolated function testPutAddAssetAssociation() returns error? {
     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
@@ -161,7 +182,8 @@ isolated function testPutAddAssetAssociation() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testGetListAssets]
+    dependsOn: [testGetListAssets],
+    groups: ["live_tests"]
 }
 isolated function testDeleteRemoveAssetAssociation() returns error? {
     var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
@@ -169,14 +191,17 @@ isolated function testDeleteRemoveAssetAssociation() returns error? {
 }
 
 @test:Config {
-    dependsOn: [testPostCreateMarketingCampaigns]
+    dependsOn: [testPostCreateMarketingCampaigns],
+    groups: ["live_tests"]
 }
 function testDeleteCampaign() returns error? {
     var response = check baseClient->/[campaignGuid2].delete();
     test:assertEquals(response.statusCode, 204);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests"]
+}
 isolated function testPostDeleteABatchOfCampaigns() returns error? {
     var response = check baseClient->/batch/archive.post(
         payload = {
