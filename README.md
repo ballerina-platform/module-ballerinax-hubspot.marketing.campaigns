@@ -184,8 +184,8 @@ public function main() returns error? {
 
 The `HubSpot Marketing Campaigns ` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/tree/main/examples), covering the following use cases:
 
-1. [Batch_of_Campaigns](examples/Batch_of_Campaigns) - Fully manage a batch of campaigns
-2. [Campaign_LifeCycle_with_Assets](examples/Campaign_LifeCycle_with_Assets) - Full life cycle of a campaign associated with assets such as forms
+1. [batch_of_campaigns](examples/batch_of_campaigns) - Fully manage a batch of campaigns
+2. [campaign_lifeCycle_with_assets](examples/campaign_lifecycle_with_assets) - Full life cycle of a campaign associated with assets such as forms
 
 ## Build from the source
 
