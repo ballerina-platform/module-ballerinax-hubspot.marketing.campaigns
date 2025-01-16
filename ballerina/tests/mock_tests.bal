@@ -45,5 +45,4 @@ isolated function testMockGetReadCampaign() returns error? {
 isolated function testMockGetListAssets() returns error? {
     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignMockGuid]/assets/[assetMockType];
     test:assertTrue(response?.results.length() > 0);
-
 }
