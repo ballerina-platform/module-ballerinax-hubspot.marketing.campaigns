@@ -2,8 +2,9 @@
 
 The `ballerinax/hubspot.marketing.campaigns` connector provides practical examples illustrating usage in various scenarios.
 
-1. [Batch of Campaigns](./batch_of_campaigns/) - 
-2. [Campaign Lifecycle with Assets](./campaign_lifecycle_with_assets/) -
+1. [Batch of Campaigns](./batch_of_campaigns/) - Fully manage a batch of campaigns
+2. [Campaign Lifecycle with Assets](./campaign_lifecycle_with_assets/) - Full life cycle of a campaign associated with assets such as forms
+
 
 ## Prerequisites
 
@@ -13,10 +14,11 @@ Refer to the Setup guide in [README.md](README.md) file to set up your hubspot a
 2. Configuration
 Update your Zendesk account related configurations in the Config.toml file in the example root directory:
 
-clientId = ''
-clientSecret = ''
-refreshToken = ''
-
+```toml
+    clientId = ""
+    clientSecret = ""
+    refreshToken = ""
+```
 ## Running an example
 
 Execute the following commands to build an example from the source:
