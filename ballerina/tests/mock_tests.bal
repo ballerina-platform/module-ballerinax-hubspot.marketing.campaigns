@@ -21,7 +21,9 @@ final Client mockClient = check new (config, serviceUrl = "http://localhost:8080
 final string campaignMockGuid = "c4573779-0830-4eb3-bfa3-0916bda9c1a4";
 final string assetMockType = "FORM";
 
-@test:Config {}
+@test:Config {
+    groups: ["mock_tests"]
+}
 isolated function mockTestCreateCampaign() returns error? {
     PublicCampaign response = check mockClient->/.post(
         payload = {
@@ -35,13 +37,17 @@ isolated function mockTestCreateCampaign() returns error? {
     test:assertNotEquals(response?.id, "");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["mock_tests"]
+}
 isolated function testMockGetReadCampaign() returns error? {
     PublicCampaignWithAssets response = check baseClient->/[campaignMockGuid];
     test:assertEquals(response?.id, campaignGuid);
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["mock_tests"]
+}
 isolated function testMockGetListAssets() returns error? {
     CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignMockGuid]/assets/[assetMockType];
     test:assertTrue(response?.results.length() > 0);
