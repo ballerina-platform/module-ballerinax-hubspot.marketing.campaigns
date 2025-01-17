@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/log;
 
-listener http:Listener httpListener = new (8080);
+listener http:Listener httpListener = new (9090);
 
 http:Service mockService = service object {
     resource function post marketing/v3/campaigns() returns PublicCampaign{
