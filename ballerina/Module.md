@@ -156,7 +156,7 @@ final hsmcampaigns:ConnectionConfig hsmcampaignsConfig = {
     }
 };
 
-final hsmcampaigns:Client hsmcampaignsClient = check new (hsmcampaignsConfig);
+final hsmcampaigns:Client hsmCampaignsClient = check new (hsmcampaignsConfig);
 ```
 
 ### Step 3: Invoke the connector operation
