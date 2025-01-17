@@ -175,7 +175,7 @@ Retrieve a Marketing Campaign
 
 ```ballerina
 public function main() returns error? {
-    hsmcampaigns:CollectionResponseWithTotalPublicCampaignForwardPaging campaigns = check baseClient->/marketing/v3/campaigns.get();
+    hsmcampaigns:CollectionResponseWithTotalPublicCampaignForwardPaging campaigns = check hsmcampaignsClient->/marketing/v3/campaigns.get();
 }
 ```
 
