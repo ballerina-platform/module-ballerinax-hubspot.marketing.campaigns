@@ -29,7 +29,7 @@ campaigns:OAuth2RefreshTokenGrantConfig auth = {
     clientSecret,
     refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
-};ß
+};
 final campaigns:Client hubspotMarketingCampaign = check new ({auth});
 
 public function main() returns error? {

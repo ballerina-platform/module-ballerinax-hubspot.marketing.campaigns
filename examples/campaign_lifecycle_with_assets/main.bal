@@ -14,11 +14,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
 import ballerina/time;
 import ballerinax/hubspot.marketing.campaigns;
-import ballerina/http;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -87,9 +87,9 @@ public function main() returns error? {
     http:Response deleteCampaignResponse = check hubspotMarketingCampaigns->/[campaignId].delete();
 
     if deleteCampaignResponse.statusCode == 204 {
-        io:println("Batch deletion is successful");
+        io:println("Deletion is successful");
     } else {
-        io:println("Batch deletion is not successful");
+        io:println("Deletion is not successful");
     }
 
 };
