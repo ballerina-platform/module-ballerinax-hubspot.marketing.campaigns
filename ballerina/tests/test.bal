@@ -38,17 +38,17 @@ OAuth2RefreshTokenGrantConfig auth = {
 final Client hsmCampaignsClient = check new ({auth: enableClient0auth2 ? auth : {token: "Bearer token"}});
 
 string campaignGuid2 = "";
-configurable string campaignGuid = ?;
-configurable string assetType = ?;
-configurable string assetID = ?;
-
-configurable string sampleCampaignGuid1 = ?;
-configurable string sampleCampaignGuid2 = ?;
-configurable string sampleCampaignGuid3 = ?;
-configurable string sampleCampaignGuid4 = ?;
+final string campaignGuid = "c4573779-0830-4eb3-bfa3-0916bda9c1a4";
+final string assetType = "FORM";
+final string assetID = "88047023-7777-40a1-b74b-4b1139e8d45b";
+final string sampleCampaignGuid1 = "ab04d4a6-1469-4ab0-9128-07bfc1b472e8";
+final string sampleCampaignGuid2 = "ef46bced-1a75-42b5-9f5f-ebdd39cbfd3b";
+final string sampleCampaignGuid3 = "b3e493b0-9d5a-4b3e-a362-f4e0f015345d";
+final string sampleCampaignGuid4 = "96a87dab-554a-474c-853b-c78193a8b889";
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testGetSearchMarketingCampaigns() returns error? {
     CollectionResponseWithTotalPublicCampaignForwardPaging response = check hsmCampaignsClient->/.get();
