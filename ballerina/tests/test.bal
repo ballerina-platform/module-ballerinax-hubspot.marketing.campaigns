@@ -15,12 +15,18 @@
 // under the License.
 
 import ballerina/oauth2;
+import ballerina/os;
 import ballerina/test;
 import ballerina/time;
 
-configurable string clientId = ?;
-configurable string clientSecret = ?;
-configurable string refreshToken = ?;
+configurable boolean enableClient0auth2 = os:getEnv("IS_LIVE_SERVER") == "false";
+configurable string clientId = enableClient0auth2 ? os:getEnv("CLIENT_ID") : "test";
+configurable string clientSecret = enableClient0auth2 ? os:getEnv("CLIENT_SECRET") : "test";
+configurable string refreshToken = enableClient0auth2 ? os:getEnv("REFRESH_TOKEN") : "test";
+
+// configurable string clientId = ?;
+// configurable string clientSecret = ?;
+// configurable string refreshToken = ?;
 
 OAuth2RefreshTokenGrantConfig auth = {
     clientId,
@@ -29,9 +35,7 @@ OAuth2RefreshTokenGrantConfig auth = {
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-ConnectionConfig config = {auth};
-
-final Client baseClient = check new (config);
+final Client hsmCampaignsClient = check new ({auth: enableClient0auth2 ? auth : {token: "Bearer token"}});
 
 string campaignGuid2 = "";
 configurable string campaignGuid = ?;
@@ -47,15 +51,16 @@ configurable string sampleCampaignGuid4 = ?;
     groups: ["live_tests"]
 }
 isolated function testGetSearchMarketingCampaigns() returns error? {
-    CollectionResponseWithTotalPublicCampaignForwardPaging response = check baseClient->/.get();
+    CollectionResponseWithTotalPublicCampaignForwardPaging response = check hsmCampaignsClient->/.get();
     test:assertTrue(response?.results.length() > 0);
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 function testPostCreateMarketingCampaigns() returns error? {
-    PublicCampaign response = check baseClient->/.post(
+    PublicCampaign response = check hsmCampaignsClient->/.post(
         payload = {
             properties: {
                 "hs_name": "campaign" + time:utcNow().toString(),
@@ -69,18 +74,20 @@ function testPostCreateMarketingCampaigns() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testGetReadACampaign() returns error? {
-    PublicCampaignWithAssets response = check baseClient->/[campaignGuid];
+    PublicCampaignWithAssets response = check hsmCampaignsClient->/[campaignGuid];
     test:assertEquals(response?.id, campaignGuid);
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testPatchUpdateCampaigns() returns error? {
-    PublicCampaign response = check baseClient->/[campaignGuid].patch(
+    PublicCampaign response = check hsmCampaignsClient->/[campaignGuid].patch(
         payload = {
             properties: {
                 "hs_goal": "updatedCampaignGoal",
@@ -92,10 +99,11 @@ isolated function testPatchUpdateCampaigns() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testPostBatchCreate() returns error? {
-    BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/create.post(
+    BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check hsmCampaignsClient->/batch/create.post(
         payload = {
             "inputs": [
                 {
@@ -111,10 +119,11 @@ isolated function testPostBatchCreate() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testPostBatchUpdate() returns error? {
-    BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check baseClient->/batch/update.post(
+    BatchResponsePublicCampaign|BatchResponsePublicCampaignWithErrors response = check hsmCampaignsClient->/batch/update.post(
         payload = {
             "inputs": [
                 {
@@ -131,11 +140,12 @@ isolated function testPostBatchUpdate() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testPostBatchRead() returns error? {
     BatchResponsePublicCampaignWithAssets|BatchResponsePublicCampaignWithAssetsWithErrors response =
-        check baseClient->/batch/read.post(
+        check hsmCampaignsClient->/batch/read.post(
         payload = {
             "inputs": [
                 {
@@ -148,62 +158,69 @@ isolated function testPostBatchRead() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testGetReportsRevenue() returns error? {
-    RevenueAttributionAggregate response = check baseClient->/[campaignGuid]/reports/revenue;
+    RevenueAttributionAggregate response = check hsmCampaignsClient->/[campaignGuid]/reports/revenue;
     test:assertTrue(response?.revenueAmount is decimal);
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testGetReportsMetrics() returns error? {
-    MetricsCounters response = check baseClient->/[campaignGuid]/reports/metrics;
+    MetricsCounters response = check hsmCampaignsClient->/[campaignGuid]/reports/metrics;
     test:assertTrue(response?.sessions >= 0);
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testGetListAssets() returns error? {
-    CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignGuid]/assets/[assetType];
+    CollectionResponsePublicCampaignAssetForwardPaging response = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType];
     test:assertTrue(response?.results.length() > 0);
 
 }
 
 @test:Config {
     dependsOn: [testDeleteRemoveAssetAssociation],
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testPutAddAssetAssociation() returns error? {
-    var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
+    var response = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
     test:assertEquals(response.statusCode, 204);
 }
 
 @test:Config {
     dependsOn: [testGetListAssets],
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testDeleteRemoveAssetAssociation() returns error? {
-    var response = check baseClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
+    var response = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
     test:assertEquals(response.statusCode, 204);
 }
 
 @test:Config {
     dependsOn: [testPostCreateMarketingCampaigns],
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 function testDeleteCampaign() returns error? {
-    var response = check baseClient->/[campaignGuid2].delete();
+    var response = check hsmCampaignsClient->/[campaignGuid2].delete();
     test:assertEquals(response.statusCode, 204);
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests"],
+    enable: enableClient0auth2
 }
 isolated function testPostDeleteABatchOfCampaigns() returns error? {
-    var response = check baseClient->/batch/archive.post(
+    var response = check hsmCampaignsClient->/batch/archive.post(
         payload = {
             "inputs": [
                 {
