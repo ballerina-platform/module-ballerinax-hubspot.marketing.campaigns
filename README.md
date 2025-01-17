@@ -72,7 +72,7 @@ Within app developer accounts, you can create a [developer test account](https:/
 
 ### Step 5: Get the Client ID and Client Secret
 
-Navigate to the Auth tab and you will see the `Client ID` and `Client Secret` for your app. Make sure to save these values.
+Navigate to the Auth tab and you will see the `Client ID`, and `Client Secret` for your app. Make sure to save these values.
 
 ![Client ID and Client Secret](docs/resources/clientId_secretId.png)
 
@@ -85,7 +85,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
       ```
       https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES>&redirect_uri=<YOUR_REDIRECT_URI>
       ```
-   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
+   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>`, and `<YOUR_SCOPES>` with your specific value.
 
    2. Paste it in the browser and select your developer test account to intall the app when prompted.
 
@@ -93,7 +93,7 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
 
    3. A code will be displayed in the browser. Copy the code.
 
-   4. Run the following curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the CODE below
+   4. Run the following curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>`, and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the CODE below
 
    - Linux/macOS
    ```bash
