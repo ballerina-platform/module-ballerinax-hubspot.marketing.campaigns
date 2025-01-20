@@ -24,10 +24,6 @@ configurable string clientId = enableClient0auth2 ? os:getEnv("CLIENT_ID") : "te
 configurable string clientSecret = enableClient0auth2 ? os:getEnv("CLIENT_SECRET") : "test";
 configurable string refreshToken = enableClient0auth2 ? os:getEnv("REFRESH_TOKEN") : "test";
 
-// configurable string clientId = ?;
-// configurable string clientSecret = ?;
-// configurable string refreshToken = ?;
-
 OAuth2RefreshTokenGrantConfig auth = {
     clientId,
     clientSecret,
