@@ -16,7 +16,13 @@
 
 import ballerina/test;
 
-final Client mockClient = check new (config, serviceUrl = "http://localhost:8080/marketing/v3/campaigns");
+final Client mockClient = check new (
+    {
+        auth: {
+            token: "test-token" // This approach eliminates the need for the client to make additional server requests for token validation, such as a refresh token request in the OAuth2 flow.
+        }
+    }, "http://localhost:9090/marketing/v3/campaigns"
+);
 
 final string campaignMockGuid = "c4573779-0830-4eb3-bfa3-0916bda9c1a4";
 final string assetMockType = "FORM";
@@ -41,7 +47,7 @@ isolated function mockTestCreateCampaign() returns error? {
     groups: ["mock_tests"]
 }
 isolated function testMockGetReadCampaign() returns error? {
-    PublicCampaignWithAssets response = check baseClient->/[campaignMockGuid];
+    PublicCampaignWithAssets response = check mockClient->/[campaignMockGuid];
     test:assertEquals(response?.id, campaignGuid);
 }
 
@@ -49,6 +55,6 @@ isolated function testMockGetReadCampaign() returns error? {
     groups: ["mock_tests"]
 }
 isolated function testMockGetListAssets() returns error? {
-    CollectionResponsePublicCampaignAssetForwardPaging response = check baseClient->/[campaignMockGuid]/assets/[assetMockType];
+    CollectionResponsePublicCampaignAssetForwardPaging response = check mockClient->/[campaignMockGuid]/assets/[assetMockType];
     test:assertTrue(response?.results.length() > 0);
 }

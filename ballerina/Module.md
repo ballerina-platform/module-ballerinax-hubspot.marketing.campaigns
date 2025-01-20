@@ -156,7 +156,7 @@ final hsmcampaigns:ConnectionConfig hsmcampaignsConfig = {
     }
 };
 
-final hsmcampaigns:Client hsmcampaignsClient = check new (hsmcampaignsConfig);
+final hsmcampaigns:Client hsmCampaignsClient = check new (hsmcampaignsConfig);
 ```
 
 ### Step 3: Invoke the connector operation
@@ -167,7 +167,7 @@ Retrieve a Marketing Campaign
 
 ```ballerina
 public function main() returns error? {
-    hsmcampaigns:CollectionResponseWithTotalPublicCampaignForwardPaging campaigns = check hsmcampaignsClient->/marketing/v3/campaigns.get();
+    hsmcampaigns:CollectionResponseWithTotalPublicCampaignForwardPaging campaigns = check hsmCampaignsClient->/marketing/v3/campaigns.get();
 }
 ```
 
