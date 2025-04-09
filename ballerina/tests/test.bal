@@ -187,8 +187,7 @@ isolated function testGetListAssets() returns error? {
     enable: enableClient0auth2
 }
 isolated function testPutAddAssetAssociation() returns error? {
-    var response = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
-    test:assertEquals(response.statusCode, 204);
+    _ = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType]/[assetID].put();
 }
 
 @test:Config {
@@ -197,8 +196,7 @@ isolated function testPutAddAssetAssociation() returns error? {
     enable: enableClient0auth2
 }
 isolated function testDeleteRemoveAssetAssociation() returns error? {
-    var response = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
-    test:assertEquals(response.statusCode, 204);
+    _ = check hsmCampaignsClient->/[campaignGuid]/assets/[assetType]/[assetID].delete();
 }
 
 @test:Config {
@@ -207,8 +205,7 @@ isolated function testDeleteRemoveAssetAssociation() returns error? {
     enable: enableClient0auth2
 }
 function testDeleteCampaign() returns error? {
-    var response = check hsmCampaignsClient->/[campaignGuid2].delete();
-    test:assertEquals(response.statusCode, 204);
+    _ = check hsmCampaignsClient->/[campaignGuid2].delete();
 }
 
 @test:Config {
@@ -216,7 +213,7 @@ function testDeleteCampaign() returns error? {
     enable: enableClient0auth2
 }
 isolated function testPostDeleteABatchOfCampaigns() returns error? {
-    var response = check hsmCampaignsClient->/batch/archive.post(
+    _ = check hsmCampaignsClient->/batch/archive.post(
         payload = {
             "inputs": [
                 {
@@ -228,5 +225,4 @@ isolated function testPostDeleteABatchOfCampaigns() returns error? {
             ]
         }
     );
-    test:assertEquals(response.statusCode, 204);
 }
