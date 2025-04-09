@@ -159,7 +159,7 @@
         "parameters" : [ {
           "name" : "startDate",
           "in" : "query",
-          "description" : "Start date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period. If not provided, no asset metrics will be fetched.\n",
+          "description" : "Start date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period. If not provided, no asset metrics will be fetched\n",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -169,7 +169,7 @@
         }, {
           "name" : "endDate",
           "in" : "query",
-          "description" : "End date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period. If not provided, no asset metrics will be fetched.",
+          "description" : "End date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period. If not provided, no asset metrics will be fetched",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -179,7 +179,7 @@
         }, {
           "name" : "properties",
           "in" : "query",
-          "description" : "A comma-separated list of the properties to be returned in the response. If any of the specified properties has empty value on the requested object(s), they will be ignored and not returned in response. If this parameter is empty, the response will include an empty properties map.",
+          "description" : "A comma-separated list of the properties to be returned in the response. If any of the specified properties has empty value on the requested object(s), they will be ignored and not returned in response. If this parameter is empty, the response will include an empty properties map",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -290,7 +290,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -349,7 +349,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -359,7 +359,7 @@
         }, {
           "name" : "assetType",
           "in" : "path",
-          "description" : "The type of asset to fetch.",
+          "description" : "The type of asset to fetch",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -389,7 +389,7 @@
         }, {
           "name" : "startDate",
           "in" : "query",
-          "description" : "Start date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched.\n",
+          "description" : "Start date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched\n",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -399,7 +399,7 @@
         }, {
           "name" : "endDate",
           "in" : "query",
-          "description" : "End date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched.",
+          "description" : "End date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -522,7 +522,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -575,7 +575,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -693,7 +693,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -732,7 +732,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -742,7 +742,7 @@
         }, {
           "name" : "startDate",
           "in" : "query",
-          "description" : "Start date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched.",
+          "description" : "Start date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -752,7 +752,7 @@
         }, {
           "name" : "endDate",
           "in" : "query",
-          "description" : " End date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched.",
+          "description" : " End date to fetch asset metrics, formatted as YYYY-MM-DD. This date is used to fetch the metrics associated with the assets for a specified period.\nIf not provided, no asset metrics will be fetched",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -762,7 +762,7 @@
         }, {
           "name" : "properties",
           "in" : "query",
-          "description" : "A comma-separated list of the properties to be returned in the response. If any of the specified properties has empty value on the requested object, they will be ignored and not returned in response. If this parameter is empty, the response will include an empty properties map.",
+          "description" : "A comma-separated list of the properties to be returned in the response. If any of the specified properties has empty value on the requested object, they will be ignored and not returned in response. If this parameter is empty, the response will include an empty properties map",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -802,7 +802,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -833,7 +833,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.\n",
+          "description" : "Unique identifier for the campaign, formatted as a UUID\n",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -882,7 +882,7 @@
         "parameters" : [ {
           "name" : "campaignGuid",
           "in" : "path",
-          "description" : "Unique identifier for the campaign, formatted as a UUID.",
+          "description" : "Unique identifier for the campaign, formatted as a UUID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1196,7 +1196,7 @@
           },
           "in" : {
             "type" : "string",
-            "description" : "The name of the field or parameter in which the error was found."
+            "description" : "The name of the field or parameter in which the error was found"
           },
           "context" : {
             "type" : "object",
@@ -1568,7 +1568,7 @@
         }
       },
       "PublicCampaignAsset" : {
-        "required" : [ "id"],
+        "required" : [ "id" ],
         "type" : "object",
         "properties" : {
           "name" : {
@@ -1706,7 +1706,8 @@
       "private_apps" : {
         "type" : "apiKey",
         "name" : "private-app",
-        "in" : "header"
+        "in" : "header",
+        "x-ballerina-name" : "privateApp"
       }
     }
   }
