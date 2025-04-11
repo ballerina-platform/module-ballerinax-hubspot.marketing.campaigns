@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
 import ballerina/time;
@@ -79,7 +78,7 @@ public function main() returns error? {
         io:println("Batch read is not successful");
     }
 
-    http:Response batchDeleteResponse = check hubspotMarketingCampaign->/batch/archive.post(
+    _ = check hubspotMarketingCampaign->/batch/archive.post(
         payload = {
             "inputs": [
                 {
@@ -91,12 +90,5 @@ public function main() returns error? {
             ]
         }
     );
-
-    int deleteResponse = batchDeleteResponse.statusCode;
-
-    if deleteResponse == 204 {
-        io:println("Batch deletion is successful");
-    } else {
-        io:println("Batch deletion is not successful");
-    }
+    io:println("Batch deletion is successful");
 };

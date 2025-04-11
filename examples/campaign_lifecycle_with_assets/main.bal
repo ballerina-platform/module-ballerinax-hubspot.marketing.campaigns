@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
 import ballerina/io;
 import ballerina/oauth2;
 import ballerina/time;
@@ -58,13 +57,8 @@ public function main() returns error? {
         io:println(string `Campaign with id "${campaignId}" created successfully`);
     }
 
-    var addAssetResponse = check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType]/[assetID].put();
-
-    if addAssetResponse.statusCode == 204 {
-        io:println("Asset association is successful");
-    } else {
-        io:println("Asset association is not successful");
-    }
+    _ = check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType]/[assetID].put();
+    io:println("Asset association is successful");
 
     campaigns:CollectionResponsePublicCampaignAssetForwardPaging assetListResponse =
         check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType];
@@ -76,20 +70,10 @@ public function main() returns error? {
         io:println("Asset list retrieval is not successful");
     }
 
-    http:Response assetRemoveResponse = check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType]/[assetID].delete();
+    _ = check hubspotMarketingCampaigns->/[campaignId]/assets/[assetType]/[assetID].delete();
+    io:println("Asset disassociation is successful");
 
-    if assetRemoveResponse.statusCode == 204 {
-        io:println("Asset removal is successful");
-    } else {
-        io:println("Asset removal is not successful");
-    }
-
-    http:Response deleteCampaignResponse = check hubspotMarketingCampaigns->/[campaignId].delete();
-
-    if deleteCampaignResponse.statusCode == 204 {
-        io:println("Deletion is successful");
-    } else {
-        io:println("Deletion is not successful");
-    }
+    _ = check hubspotMarketingCampaigns->/[campaignId].delete();
+    io:println("Campaign deletion is successful");
 
 };
