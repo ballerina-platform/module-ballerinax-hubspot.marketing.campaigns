@@ -8,6 +8,7 @@ authors = ["Ballerina"]
 keywords = ["marketing", "campaigns", "Vendor/HubSpot", "Area/Marketing & Social Media", "Type/Connector"]
 
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns"
+icon = "icon.png"
 
 [build-options]
 observabilityIncluded = true
