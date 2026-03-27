@@ -2,12 +2,13 @@
 distribution = "2201.12.0"
 org = "ballerinax"
 name = "hubspot.marketing.campaigns"
-version = "2.0.0"
+version = "2.0.1"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["marketing", "campaigns", "Vendor/HubSpot", "Area/CRM", "Type/Connector"]
+keywords = ["marketing", "campaigns", "Vendor/HubSpot", "Area/Marketing & Social Media", "Type/Connector"]
 
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns"
+icon = "icon.png"
 
 [build-options]
 observabilityIncluded = true
