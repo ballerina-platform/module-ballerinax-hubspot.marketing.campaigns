@@ -2,13 +2,13 @@
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/actions/workflows/ci.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.campaigns/commits/master)
-[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/hubspot.marketing.campaigns.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%hubspot.marketing.campaigns)
+[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/hubspot.marketing.campaigns.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%2Fhubspot.marketing.campaigns)
 
 ## Overview
 
 [HubSpot](https://www.hubspot.com) is an AI-powered customer relationship management (CRM) platform.
 
-The `ballerinax/module-ballerinax-hubspot.marketing.campaigns` connector offers APIs to connect and interact with the [Hubspot Marketing Campaigns API](https://developers.hubspot.com/docs/guides/api/marketing/campaigns) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)
+The `ballerinax/module-ballerinax-hubspot.marketing.campaigns` connector offers APIs to connect and interact with the [HubSpot Marketing Campaigns API](https://developers.hubspot.com/docs/guides/api/marketing/campaigns) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)
 
 ## Setup guide
 
